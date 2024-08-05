@@ -8,20 +8,26 @@ const imageUpload = document.getElementById('image-upload');
 const embedMessageButton = document.getElementById('embed-message');
 const downloadImageLink = document.getElementById('download-image');
 
-// Store message
 let message = '';
 
+// Save the message
 saveMessageButton.addEventListener('click', () => {
     message = messageInput.value;
+    if (message.trim() === '') {
+        alert('Please enter a message!');
+        return;
+    }
     alert('Message saved!');
 });
 
+// Restart the message
 restartMessageButton.addEventListener('click', () => {
     message = '';
     messageInput.value = '';
     alert('Message cleared!');
 });
 
+// Embed the message into the image
 embedMessageButton.addEventListener('click', () => {
     if (message === '') {
         alert('Please save a message first!');
@@ -68,6 +74,7 @@ const imageUploadDecipher = document.getElementById('image-upload-decipher');
 const decipherMessageButton = document.getElementById('decipher-message');
 const decipheredMessageTextArea = document.getElementById('deciphered-message');
 
+// Decode message from the image
 decipherMessageButton.addEventListener('click', () => {
     const file = imageUploadDecipher.files[0];
     if (!file) {
@@ -93,6 +100,8 @@ decipherMessageButton.addEventListener('click', () => {
                 const charCode = data[i * 4];
                 if (charCode !== 0) {
                     message += String.fromCharCode(charCode);
+                } else {
+                    break; // Stop if we hit the end of the message
                 }
             }
             decipheredMessageTextArea.value = message || 'No message found';
