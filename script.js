@@ -48,7 +48,8 @@ embedMessageButton.addEventListener('click', () => {
             const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
             const data = imageData.data;
             for (let i = 0; i < message.length; i++) {
-                data[i * 4] = message.charCodeAt(i); // Encode message character as pixel value
+                if (i * 4 >= data.length) break; // Ensure we don't go out of bounds
+                data[i * 4] = message.charCodeAt(i); // Store message character in the red channel
             }
             ctx.putImageData(imageData, 0, 0);
 

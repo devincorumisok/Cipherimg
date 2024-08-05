@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+l<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,24 +8,26 @@
 </head>
 <body>
     <div class="container">
+        <h1>Imgchyphr</h1>
+
         <!-- Encrypt Message Spot -->
-        <section id="encrypt-message-spot" class="section">
-            <h1>Encrypt Message Spot</h1>
+        <div class="section">
+            <h2>Encrypt Message Spot</h2>
             <textarea id="message-input" placeholder="Type your message here..."></textarea>
             <button id="save-message">Save Message</button>
             <button id="restart-message">Restart Message</button>
             <input type="file" id="image-upload" accept="image/*">
             <button id="embed-message">Embed Message</button>
-            <a id="download-image" style="display:none;" download="image_with_message.png">Download Image</a>
-        </section>
+            <a id="download-image" style="display: none;">Download Image</a>
+        </div>
 
         <!-- Decipher Message Spot -->
-        <section id="decipher-message-spot" class="section">
-            <h1>Decipher Message Spot</h1>
+        <div class="section">
+            <h2>Decipher Message Spot</h2>
             <input type="file" id="image-upload-decipher" accept="image/*">
             <button id="decipher-message">Decipher Message</button>
-            <textarea id="deciphered-message" placeholder="Deciphered message will appear here..." readonly></textarea>
-        </section>
+            <textarea id="deciphered-message" readonly></textarea>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
