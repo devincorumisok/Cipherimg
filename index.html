@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imgchyphr</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Encrypt Message Spot -->
+        <section id="encrypt-message-spot" class="section">
+            <h1>Encrypt Message Spot</h1>
+            <textarea id="message-input" placeholder="Type your message here..."></textarea>
+            <button id="save-message">Save Message</button>
+            <button id="restart-message">Restart Message</button>
+            <input type="file" id="image-upload" accept="image/*">
+            <button id="embed-message">Embed Message</button>
+            <a id="download-image" style="display:none;" download="image_with_message.png">Download Image</a>
+        </section>
+
+        <!-- Decipher Message Spot -->
+        <section id="decipher-message-spot" class="section">
+            <h1>Decipher Message Spot</h1>
+            <input type="file" id="image-upload-decipher" accept="image/*">
+            <button id="decipher-message">Decipher Message</button>
+            <textarea id="deciphered-message" placeholder="Deciphered message will appear here..." readonly></textarea>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
