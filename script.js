@@ -43,9 +43,14 @@ embedMessageButton.addEventListener('click', () => {
             canvas.width = img.width;
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0);
-            ctx.font = '20px Arial';
-            ctx.fillStyle = 'white';
-            ctx.fillText(message, 10, 30); // Position text on image
+
+            // Encode message
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            for (let i = 0; i < message.length; i++) {
+                data[i * 4] = message.charCodeAt(i); // Encode message character as pixel value
+            }
+            ctx.putImageData(imageData, 0, 0);
 
             const newImageUrl = canvas.toDataURL('image/png');
             downloadImageLink.href = newImageUrl;
@@ -78,11 +83,18 @@ decipherMessageButton.addEventListener('click', () => {
             canvas.width = img.width;
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0);
-            
-            // For simplicity, the message extraction part is skipped. In a real application,
-            // you would need a more sophisticated method to detect and extract the hidden message.
-            // This is just a placeholder to demonstrate the process.
-            decipheredMessageTextArea.value = 'Message extraction not implemented.';
+
+            // Decode message
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            let message = '';
+            for (let i = 0; i < data.length / 4; i++) {
+                const charCode = data[i * 4];
+                if (charCode !== 0) {
+                    message += String.fromCharCode(charCode);
+                }
+            }
+            decipheredMessageTextArea.value = message || 'No message found';
         };
         img.src = e.target.result;
     };
